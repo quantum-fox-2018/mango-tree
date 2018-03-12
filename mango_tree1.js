@@ -86,11 +86,9 @@ class MangoTree {
       let maxHarvest = this.fruits; // jumlah max petik
 
       let fruitBascket = [];
-      let countFruitGood = 0; // good bad
-      let countFruitBad = 0; // good bad
+      let countFruitGood = 0; 
+      let countFruitBad = 0; 
       
-      // return maxHarvest;
-
       for (let i = 0; i < maxHarvest; i++) {
         let checkFruit = Math.floor(Math.random()*2); // 0 good, 1 bad
         if (checkFruit == 0) {
@@ -102,8 +100,6 @@ class MangoTree {
         }
       }
 
-      // return fruitBascket;
-
       for (let i = 0; i < fruitBascket.length; i++) {
         if (fruitBascket[i]._quality == 'good') {
           countFruitGood++;
@@ -114,9 +110,6 @@ class MangoTree {
 
       this._good = countFruitGood;
       this._bad = countFruitBad;
-
-      // this._picked_fruit = actionHarvest;
-      // this._current_fruit -= actionHarvest;
 
     } else {
       this._status = false;
@@ -134,7 +127,6 @@ class Mango {
 }
 
 let mangoTree = new MangoTree(0,0,1000,0,0,true);
-// console.log(mangoTree.healtyStatus);
 
 
 do {
