@@ -1,8 +1,8 @@
 "use strict"
 const {FruitTree, Fruit} = require("./fruit_tree.js");
 
-class MangoTree extends FruitTree{
-  // Initialize a new MangoTree
+class AppleTree extends FruitTree{
+  // Initialize a new AppleTree
   constructor() {
     super();
     super.maxFruits = 5;
@@ -11,13 +11,13 @@ class MangoTree extends FruitTree{
   }
 }
 
-class Mango extends Fruit{
-  // Produce a mango
+class Apple extends Fruit{
+  // Produce a apple
   constructor() {
     super();
   }
 }
 
 module.exports = {
-  MangoTree, Mango
+  AppleTree, Apple
 }
