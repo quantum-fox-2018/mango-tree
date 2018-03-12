@@ -57,7 +57,7 @@ class FruitTree {
   harvest() {
     let countGood = 0
     let countBad = 0
-    for(let i=0; i<this.fruits; i++){
+    for(let i=0; i<this._fruits; i++){
       let random = Math.floor(Math.random()*2)
       if(random==0){
         countGood++
@@ -67,7 +67,6 @@ class FruitTree {
     }
     this._harvested = `${countGood} good, ${countBad} bad`
   }
-
 }
 
 class MangoTree extends FruitTree {
@@ -105,16 +104,16 @@ class PeerTree extends FruitTree {
 }
 
 console.log(`The tree is alive! :smile:`)
-// // mango tree
-// let mangoTree = new MangoTree()
-// do {
-//   mangoTree.grow()
-//   mangoTree.produceMangoes()
-//   mangoTree.harvest()
-//   console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height.toFixed(2)} | Fruits harvested = ${mangoTree.fruits} (${mangoTree.harvested})`)
-// } while (mangoTree.healthyStatus !== false)
+// mango tree
+let mangoTree = new MangoTree()
+do {
+  mangoTree.grow()
+  mangoTree.produceMangoes()
+  mangoTree.harvest()
+  console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height.toFixed(2)} | Fruits harvested = ${mangoTree.fruits} (${mangoTree.harvested})`)
+} while (mangoTree.healthyStatus !== false)
 
-// apple tree
+// // apple tree
 // let appleTree = new AppleTree()
 // do {
 //   appleTree.grow()
@@ -123,14 +122,14 @@ console.log(`The tree is alive! :smile:`)
 //   console.log(`[Year ${appleTree.age} Report] Height = ${appleTree.height.toFixed(2)} | Fruits harvested = ${appleTree.fruits} (${appleTree.harvested})`)
 // } while (appleTree.healthyStatus !== false)
 
-//peer tree
-let peerTree = new PeerTree()
-do {
-  peerTree.grow()
-  peerTree.produceMangoes()
-  peerTree.harvest()
-  console.log(`[Year ${peerTree.age} Report] Height = ${peerTree.height.toFixed(2)} | Fruits harvested = ${peerTree.fruits} (${peerTree.harvested})`)
-} while (peerTree.healthyStatus !== false)
+// // peer tree
+// let peerTree = new PeerTree()
+// do {
+//   peerTree.grow()
+//   peerTree.produceMangoes()
+//   peerTree.harvest()
+//   console.log(`[Year ${peerTree.age} Report] Height = ${peerTree.height.toFixed(2)} | Fruits harvested = ${peerTree.fruits} (${peerTree.harvested})`)
+// } while (peerTree.healthyStatus !== false)
 console.log(`The tree has met its end! :sad:`)
 
 // // Release 1
