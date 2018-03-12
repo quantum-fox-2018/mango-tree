@@ -201,6 +201,9 @@ class Apple {
 
 // Release 2
 class FruitTree {
+  constructor(){
+    
+  }
  
 }
 class Fruit {}
