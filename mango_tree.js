@@ -69,23 +69,28 @@ class MangoTree {
 
   // Get some fruits
   harvest() {
-    this._harvested = [];
-    if(this._fruits != 0){
-      let good = Math.floor(Math.random()* parseInt(this._fruits-1));
-      let bad = parseInt(this._fruits) - good;
-      this._harvested.push(good+' good');
-      this._harvested.push(bad+' bad');
-    }else{
-      this._harvested.push('0 good');
-      this._harvested.push('0 bad');
-    }
+    let mango = new Mango(this._fruits);
+    this._harvested = mango.quality;
   }
 
 }
 
 class Mango {
   // Produce a mango
-  constructor() {
+  constructor(fruits) {
+    this.quality = [];
+    let good = 0;
+    let bad = 0;
+    for(let i = 0; i < fruits; i++){
+        let randomQuality = Math.round(Math.random());
+        if(randomQuality == 0){
+            good += 1;
+        }else{
+            bad += 1;
+        }
+    }
+    this.quality.push(good+' good');
+    this.quality.push(bad+' bad');
   }
 }
 
