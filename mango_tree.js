@@ -11,6 +11,7 @@ class FruitTree {  // Initialize a new MangoTree
     this._matureAge = matureAge;
     this._good = 0;
     this._bad = 0;
+    this._array = [];
   }
 
   get age() {
@@ -47,22 +48,30 @@ class FruitTree {  // Initialize a new MangoTree
     var fruitTotal = Math.floor(Math.random()*Math.floor(10)+1);
     var good = [];
     var bad = [];
-    if(fruit_type !== '') {
       if(this._age >= this._matureAge) {
         for(var i = 0; i < fruitTotal;i++) {
           var fruitQ = Math.random();
           if(fruitQ >= 1) {
             var fruitstat = "good";
-            var fruits = new Fruit(fruitstat);
+            if(fruit_type === "mango") {
+              var fruits = new Mango(fruitstat);
+            }
+            if(fruit_type === "apple") {
+              var fruits = new Apple(fruitstat);
+            }
             good.push(fruitstat);
-          } else {
+            } else {
             fruitstat = "bad";
-            var fruits = new Fruit(fruitstat);
+              if(fruit_type === "mango") {
+                var fruits = new Mango(fruitstat);
+              }
+              if(fruit_type === "apple") {
+                var fruits = new Apple(fruitstat);
+              }
             bad.push(fruitstat)
           }
         }
       }
-    }
     this._good = good.length;
     this._bad = bad.length;
     return good.length + bad.length;
@@ -75,7 +84,7 @@ class FruitTree {  // Initialize a new MangoTree
 
 class Fruit {
   constructor(fruitstat) {
-    this.applestat = fruitstat;
+    this.fruitstatus = fruitstat;
   }
 }
 
@@ -86,8 +95,8 @@ class MangoTree extends FruitTree {
 }
 
 class Mango extends Fruit {
-  constructor(fruitstat) {
-    super(fruitstat);
+  constructor() {
+    super();
   }
 }
 
@@ -97,26 +106,28 @@ class AppleTree extends FruitTree {
   }
 }
 
-class Apple {
-  constructor(applestat) {
-    this.applestat = applestat;
+class Apple extends Fruit {
+  constructor(fruitstat) {
+    super(fruitstat);
   }
 }
 
 // driver code untuk release 0
-let fruitTree = new FruitTree();
 let mangoTree = new MangoTree();
 let appleTree = new AppleTree();
+let mangoes = new Mango();
+console.log(mangoes);
+
 do {
   mangoTree.grow();
-  mangoTree.produceFruit();
+  mangoTree.produceFruit("mango");
   mangoTree.harvest();
   console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height} | Fruits harvested = ${mangoTree.harvested}`)
 } while (mangoTree.healthyStatus != false)
 
 do {
   appleTree.grow();
-  appleTree.produceFruit();
+  appleTree.produceFruit("apple");
   appleTree.harvest();
   console.log(`[Year ${appleTree.age} Report] Height = ${appleTree.height} | Fruits harvested = ${appleTree.harvested}`)
 } while (appleTree.healthyStatus != false)
