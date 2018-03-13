@@ -2,7 +2,7 @@
 
 // Release 2
 class FruitTree {  // Initialize a new MangoTree
-  constructor(age, height, healthyStatus, harvested,maxAge, matureAge, good, bad) {
+  constructor(maxAge, matureAge) {
     this._age = 0;
     this._height = 0;
     this._healthyStatus = true;
@@ -83,8 +83,8 @@ class FruitTree {  // Initialize a new MangoTree
 class MangoTree extends FruitTree {
 
   // Initialize a new MangoTree
-  constructor(age, height, healthyStatus, harvested, maxAge, matureAge, good, bad) {
-    super(age, height, healthyStatus, harvested, 18, 7, good, bad)
+  constructor(maxAge, matureAge) {
+    super(18, 7)
   }
   // Get current states here
 }
@@ -99,8 +99,8 @@ class Mango extends Fruit {
 // Release 1
 class AppleTree extends FruitTree {
   // Initialize a new MangoTree
-  constructor(age, height, healthyStatus, harvested,maxAge, matureAge, good, bad) {
-    super(age, height, healthyStatus, harvested, 15, 5, good, bad);
+  constructor(maxAge, matureAge) {
+    super(15, 5);
   }
 
 }
