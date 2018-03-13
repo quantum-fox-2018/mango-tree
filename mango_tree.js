@@ -46,45 +46,49 @@ class FruitTree {  // Initialize a new MangoTree
   // Produce some mangoes
   produceFruit(fruit_type) {
     var fruitTotal = Math.floor(Math.random()*Math.floor(10)+1);
-    var good = [];
-    var bad = [];
       if(this._age >= this._matureAge) {
         for(var i = 0; i < fruitTotal;i++) {
-          var fruitQ = Math.random();
-          if(fruitQ >= 1) {
-            var fruitstat = "good";
-            if(fruit_type === "mango") {
-              var fruits = new Mango(fruitstat);
-            }
-            if(fruit_type === "apple") {
-              var fruits = new Apple(fruitstat);
-            }
-            good.push(fruitstat);
-            } else {
-            fruitstat = "bad";
-              if(fruit_type === "mango") {
-                var fruits = new Mango(fruitstat);
-              }
-              if(fruit_type === "apple") {
-                var fruits = new Apple(fruitstat);
-              }
-            bad.push(fruitstat)
+          if(fruit_type === "mango") {
+            var fruits = new Mango();
+            this._array.push(fruits);
+          }
+          if(fruit_type === "apple") {
+            var fruits = new Apple();
+            this._array.push(fruits);
           }
         }
       }
-    this._good = good.length;
-    this._bad = bad.length;
-    return good.length + bad.length;
   }
 
   harvest() {
-    this._harvested = this.produceFruit();
+    var good = [];
+    var bad = [];
+    for(var i = 0; i < this._array.length; i++) {
+      if(this._array[i] === "good") {
+        good.push(this._array[i]);
+      } else {
+        bad.push(this._array[i]);
+      }
+    }
+    this._good = good.length;
+    this._bad = bad.length;
+    return this._harvested = good.length + bad.length;
   }
 }
 
 class Fruit {
-  constructor(fruitstat) {
-    this.fruitstatus = fruitstat;
+  constructor() {
+    this.fruitstatus = this.randomQuality();
+  }
+
+  randomQuality() {
+    var fruitQ = Math.random();
+    if(fruitQ >= 1) {
+      var fruitstat = "good";
+    } else {
+      var fruitstat = "bad";
+    }
+    return fruitstat;
   }
 }
 
