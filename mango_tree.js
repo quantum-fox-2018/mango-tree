@@ -49,7 +49,8 @@ class MangoTree {
 
   // Produce some mangoes
   produceMangoes() {
-    this._jumlahBuahYangSudahdipetik = this._jumlahBuahYangSudahdipetik + Math.floor(Math.random()*10)
+    this._jumlahBuahYangSudahdipetik = 0
+    this._jumlahBuahYangSudahdipetik = Math.floor(Math.random()*10)
   }
 
   // Get some fruits
