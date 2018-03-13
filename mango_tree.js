@@ -2,27 +2,15 @@
 
 // Release 2
 class FruitTree {
-  constructor() {
+  constructor(maxAge, matureAge, maxHeight) {
     this._age = 0;
-    this._maxAge = this._maxAge;
-    this._matureAge = this._matureAge;
+    this._maxAge = maxAge;
+    this._matureAge = matureAge;
     this._height = 0;
-    this._maxHeight = this._maxHeight;
+    this._maxHeight = maxHeight;
     this._fruits = 0;
     this._harvested = [];
     this._healthyStatus = true;
-  }
-
-  set maxAge(age) {
-    this._maxAge = age;
-  }
-
-  set matureAge(mature) {
-    this._matureAge = mature;
-  }
-
-  set maxHeight(height) {
-    this._maxHeight = height;
   }
 
   get age() {
@@ -115,10 +103,7 @@ class Fruit {
 class MangoTree extends FruitTree {
   // Initialize a new MangoTree
   constructor() {
-    super();
-    super.maxAge = 16;
-    super.matureAge = 11;
-    super.maxHeight = 5.2;
+    super(16, 11, 5.2);
   }
 }
 
@@ -128,15 +113,10 @@ class Mango extends Fruit {
     super();
   }
 }
-
-
 // Release 1
 class AppleTree extends FruitTree {
   constructor() {
-    super();
-    super.maxAge = 18;
-    super.matureAge = 9;
-    super.maxHeight = 4.8;
+    super(18, 9, 4.8);
   }
 }
 
