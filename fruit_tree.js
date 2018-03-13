@@ -70,10 +70,15 @@ class FruitTree {
 }
 
 class Fruit {
-  // Produce a mango
+  // Produce a Fruits
   constructor(fruits) {
     this.quality = [];
-    this.assignRandomQualities
+    this.assignRandomQualities(fruits);
+
+  }
+
+  assignRandomQualities(fruits){
+    // let fruits = this.fruits;
     let good = 0;
     let bad = 0;
     for(let i = 0; i < fruits; i++){
@@ -86,10 +91,6 @@ class Fruit {
     }
     this.quality.push(good+' good');
     this.quality.push(bad+' bad');
-  }
-
-  assignRandomQualities(){
-    this.quality.push
   }
 }
 
