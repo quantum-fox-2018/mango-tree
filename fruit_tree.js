@@ -1,14 +1,14 @@
 class FruitTree {
 
   // Initialize a new MangoTree
-  constructor(maxAge, treeName) {
+  constructor(maxAge, treeName, plantedAge, plantedHeight) {
     this._age = 0;
     this._height = 0;
     this._fruits = 0;
     this.healthStatus = true;
     this._harvested = [];
-    this.maxAge = maxAge;
-    this.treeName = treeName;
+    this.maxAge = 0;
+    this.treeName = '';
   }
 
   get age() {
@@ -73,6 +73,7 @@ class Fruit {
   // Produce a mango
   constructor(fruits) {
     this.quality = [];
+    this.assignRandomQualities
     let good = 0;
     let bad = 0;
     for(let i = 0; i < fruits; i++){
@@ -86,31 +87,47 @@ class Fruit {
     this.quality.push(good+' good');
     this.quality.push(bad+' bad');
   }
+
+  assignRandomQualities(){
+    this.quality.push
+  }
 }
 
 //MangoTree
 class MangoTree extends FruitTree {
-  constructor(maxAges, treeName){
-    super(maxAges, treeName);
+  constructor(){
+    super();
+    this.maxAge = 20;
+    this.treeName = 'Mango';
+    this._age = 2; //plantedAge
+    this._height = '1.3';
   }
 }
 
 //AppleTree
 class AppleTree extends FruitTree {
-  constructor(maxAges, treeName){
-    super(maxAges, treeName);
+  constructor(){
+    super();
+    this.maxAge = 14;
+    this.treeName = 'Apple';
+    this._age = 1;
+    this._height = '0.5';
   }
 }
 
 //PearTree
 class PearTree extends FruitTree {
-  constructor(maxAges, treeName){
-    super(maxAges, treeName);
+  constructor(){
+    super();
+    this.maxAge = 10;
+    this.treeName = 'Pear';
+    this._age = 3;
+    this._height = '2.2';
   }
 }
 
 //Test Case Manggo
-let mangoTree = new MangoTree(20, 'Manggo');
+let mangoTree = new MangoTree();
 console.log(`${mangoTree.treeName} tree is alive! :smile:`);
 do {
   mangoTree.grow();
@@ -124,7 +141,7 @@ console.log(`${mangoTree.treeName} tree has met its end. :sad:`);
 
 
 //Test Case Apple
-let appleTree = new AppleTree(14, 'Apple');
+let appleTree = new AppleTree();
 console.log(`\n${appleTree.treeName} tree is alive! :smile:`);
 do {
   appleTree.grow();
@@ -137,7 +154,7 @@ console.log(`${appleTree.treeName} tree has met its end. :sad:`);
 
 
 //Test Case Pear
-let pearTree = new PearTree(10, 'Pear');
+let pearTree = new PearTree();
 console.log(`\n${pearTree.treeName} tree is alive! :smile:`);
 do {
   pearTree.grow();
