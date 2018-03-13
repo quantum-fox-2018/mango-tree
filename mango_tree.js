@@ -1,10 +1,7 @@
 "use strict"
 
-// release 0
-
-class MangoTree {
-
-  // Initialize a new MangoTree
+// Release 2
+class FruitTree {
   constructor() {
     this._age = 0
     this._height = 0
@@ -13,7 +10,7 @@ class MangoTree {
     this._harvested = 0
     this._maxHeight = 10
     this._mature = 12
-    this._healtStatus = this.healthyStatus
+    this._healthStatus = this.healthyStatus
   }
 
   get age() {
@@ -38,18 +35,14 @@ class MangoTree {
   }
 
 
-  // Get current states here
-
-  // Grow the tree
   grow() {
     this._age++
     if(this._age <= this._maxHeight){
-      this._height += Math.random()*this._mature
+      this._height += Math.random()*2
     }
   }
 
-  // Produce some mangoes
-  produceMangoes() {
+  produceFruit() {
     let count = Math.floor(Math.random()*this._maxFruit)
     
     for (let i = 0; i < count; i++) {
@@ -61,36 +54,99 @@ class MangoTree {
         this._fruits.push(new Mango('bad'))
       }
     }
-    // return this._fruits
+    return this._fruits
   }
 
-  // Get some fruits
   harvest() {
     let fruitsCount = this._fruits.length
-    let fruitsQuality = {
-      good: 0,
-      bad: 0
-    }
+    let countGood = 0
+    let countBad = 0
 
     while (this._fruits.length > 0) {
       if (this._fruits[0]._quality === 'good')
-        fruitsQuality.good++
+        countGood++
       else{
-        fruitsQuality.bad++
+        countBad++
       }
       this._fruits.shift()
     }
-    // console.log(this._fruits[0])
-    return this._harvested = `${fruitsCount} (${fruitsQuality.good} good, ${fruitsQuality.bad} bad)`
+    return this._harvested = `${fruitsCount} (${countGood} good, ${countBad} bad)`
   }
+
 }
 
-class Mango {
-  // Produce a mango
+class Fruit {
   constructor(quality) {
     this._quality = quality
   }
+}
 
+
+
+class MangoTree extends FruitTree {
+
+  // Initialize a new MangoTree
+  constructor() {
+    super()
+    this._maxFruit = 30
+    this._mature = 14
+  }
+
+}
+
+class Mango extends Fruit {
+  // Produce a mango
+  constructor(quality) {
+    super(quality)
+  }
+
+}
+
+
+class AppleTree extends FruitTree {
+  constructor(){
+    super()
+    this._maxHeight = 5
+    this._maxFruit = 50
+  }
+
+  produceFruit() {
+    let count = Math.floor(Math.random()*this._maxFruit)
+    
+    for (let i = 0; i < count; i++) {
+      let randQuality = Math.floor(Math.random()*count)
+      if(randQuality >= 5){
+        this._fruits.push(new Apple('red'))
+      }
+      else{
+        this._fruits.push(new Apple('green'))
+      }
+    }
+    return this._fruits
+  }
+
+  harvest() {
+    let fruitsCount = this._fruits.length
+    let countRed = 0
+    let countGreen = 0
+
+    while (this._fruits.length > 0) {
+      if (this._fruits[0]._quality === 'red')
+        countRed++
+      else{
+        countGreen++
+      }
+      this._fruits.shift()
+    }
+    return this._harvested = `${fruitsCount} Apples (${countRed} red, ${countGreen} green)`
+  }
+
+}
+
+class Apple extends Fruit{
+  constructor(quality) {
+    super(quality)
+  }
 }
 
 
@@ -99,21 +155,25 @@ class Mango {
   console.log('The tree is alive! :smile:')
   do {
     mangoTree.grow();
-    mangoTree.produceMangoes();
+    mangoTree.produceFruit();
     mangoTree.harvest();
     console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height} m | Fruits harvested = ${mangoTree.harvested}`)
    } while (mangoTree.healthyStatus != false)
    console.log('The tree has met its end! :sad:')
 
 
-// Release 1
-class AppleTree {}
-class Apple {}
+// console.log(mangoTree);
+console.log('===============================================================');
 
-// Release 2
-class FruitTree {}
-class Fruit {}
 
-console.log(mangoTree._fruits);
+let appleTree = new AppleTree()
+  console.log('The tree is alive! :smile:')
+  do {
+    appleTree.grow();
+    appleTree.produceFruit();
+    appleTree.harvest();
+    console.log(`[Year ${appleTree.age} Report] Height = ${appleTree.height} m | Fruits harvested = ${appleTree.harvested}`)
+   } while (appleTree.healthyStatus != false)
+   console.log('The tree has met its end! :sad:')
 
 
