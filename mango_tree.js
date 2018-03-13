@@ -8,6 +8,7 @@ class MangoTree extends FruitTree{
     super.maxFruits = 5;
     super.maxAge = 10;
     super.maxHeight = 20;
+    super.matureAge = 5;
   }
 }
 

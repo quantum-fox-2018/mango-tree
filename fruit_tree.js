@@ -5,7 +5,7 @@ class FruitTree {
     this._height = 0;
     this._fruits = [];
     this._maxFruits = this._maxFruits;
-    this._harvested = this._harvested;
+    this._harvested = "";
     this._healthyStatus = true;
     this._maxAge = this._maxAge;
     this._maxHeight = this._maxHeight;
@@ -22,6 +22,10 @@ class FruitTree {
 
   set maxHeight(max) {
     this._maxHeight = max;
+  }
+
+  set matureAge(age) {
+    this._matureAge = age;
   }
 
   get age() {
@@ -61,11 +65,13 @@ class FruitTree {
 
   // Produce some mangoes
   produceFruits() {
-    let maxFruits = Math.floor(Math.random() * Number(this._maxFruits)) + 1;
-    let fruit;
-    for(let i = 0; i < maxFruits; i++) {
-      fruit = new Fruit();
-      this._fruits.push(fruit);
+    if(this._age > this._matureAge) {
+      let maxFruits = Math.floor(Math.random() * Number(this._maxFruits)) + 1;
+      let fruit;
+      for(let i = 0; i < maxFruits; i++) {
+        fruit = new Fruit();
+        this._fruits.push(fruit);
+      }
     }
   }
 

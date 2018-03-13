@@ -2,6 +2,7 @@ const {AppleTree, Apple} = require("./apple_tree.js");
 const {MangoTree, Mango} = require("./mango_tree.js");
 
 let appleTree = new AppleTree();
+console.log(appleTree);
 console.log("Apple");
 console.log("The apple tree is alive! :smile:");
 do {
