@@ -1,17 +1,17 @@
 "use strict"
 
 class FruitTree {
-  constructor(initialAge,matureAge,deadAge,totalNormalFruits,growHeight){
+  constructor(){
     this._healthyStatus = true;
     this._harvested = null;
-    this._fruits = totalNormalFruits;
+    this._fruits = 10;
     this._goodQuality = 0;
     this._badQuality = 0;
-    this._age = initialAge;
+    this._age = 0;
     this._height =null;
-    this.deadAge = deadAge;
-    this.matureAge = matureAge
-    this.growthHeight = growHeight;
+    this.deadAge = 20;
+    this.matureAge = 5
+    this.growthHeight = 10;
   }
 
   get age() {
@@ -100,7 +100,12 @@ class Fruit {
 
 class MangoTree extends FruitTree{
   constructor(initialAge,matureAge,deadAge,totalNormalFruits,growHeight){
-    super(initialAge,matureAge,deadAge,totalNormalFruits,growHeight);
+    super();
+    this.deadAge = deadAge;
+    this.initialAge = initialAge;
+    this.matureAge = matureAge;
+    this.totalNormalFruits = totalNormalFruits;
+    this.growHeight = growHeight;
   }
 }
 class Mango extends Fruit{
@@ -111,7 +116,12 @@ class Mango extends Fruit{
 
 class AppleTree extends FruitTree{
   constructor(initialAge,matureAge,deadAge,totalNormalFruits,growHeight){
-    super(initialAge,matureAge,deadAge,totalNormalFruits,growHeight);
+    super();
+    this.deadAge = deadAge;
+    this.initialAge = initialAge;
+    this.matureAge = matureAge;
+    this.totalNormalFruits = totalNormalFruits;
+    this.growHeight = growHeight;
   }
 }
 class Apple extends Fruit{
@@ -144,7 +154,12 @@ do {
 
 class PearTree extends FruitTree{
   constructor(initialAge,matureAge,deadAge,totalNormalFruits,growHeight){
-    super(initialAge,matureAge,deadAge,totalNormalFruits,growHeight);
+    super();
+    this.deadAge = deadAge;
+    this.initialAge = initialAge;
+    this.matureAge = matureAge;
+    this.totalNormalFruits = totalNormalFruits;
+    this.growHeight = growHeight;
   }
 }
 class Pear extends Fruit{
