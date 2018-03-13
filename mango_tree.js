@@ -46,13 +46,7 @@ class FruitTree {
     let count = Math.floor(Math.random()*this._maxFruit)
     
     for (let i = 0; i < count; i++) {
-      let randQuality = Math.floor(Math.random()*count)
-      if(randQuality >= 5){
-        this._fruits.push(new Mango('good'))
-      }
-      else{
-        this._fruits.push(new Mango('bad'))
-      }
+      this._fruits.push(new Fruit())
     }
     return this._fruits
   }
@@ -76,8 +70,14 @@ class FruitTree {
 }
 
 class Fruit {
-  constructor(quality) {
-    this._quality = quality
+  constructor() {
+    this._quality = this.checkQuality()
+  }
+
+  checkQuality(){
+    let type = ['good','bad']
+    let random = Math.floor(Math.random()* type.length)
+    return type[random]
   }
 }
 
@@ -96,8 +96,8 @@ class MangoTree extends FruitTree {
 
 class Mango extends Fruit {
   // Produce a mango
-  constructor(quality) {
-    super(quality)
+  constructor() {
+    super()
   }
 
 }
@@ -114,13 +114,7 @@ class AppleTree extends FruitTree {
     let count = Math.floor(Math.random()*this._maxFruit)
     
     for (let i = 0; i < count; i++) {
-      let randQuality = Math.floor(Math.random()*count)
-      if(randQuality >= 5){
-        this._fruits.push(new Apple('red'))
-      }
-      else{
-        this._fruits.push(new Apple('green'))
-      }
+      this._fruits.push(new Apple())
     }
     return this._fruits
   }
@@ -144,9 +138,16 @@ class AppleTree extends FruitTree {
 }
 
 class Apple extends Fruit{
-  constructor(quality) {
-    super(quality)
+  constructor() {
+    super()
   }
+
+  checkQuality(){
+    let type = ['red','green']
+    let random = Math.floor(Math.random()* type.length)
+    return type[random]
+  }
+
 }
 
 
@@ -177,3 +178,4 @@ let appleTree = new AppleTree()
    console.log('The tree has met its end! :sad:')
 
 
+// console.log((appleTree.produceFruit()));
