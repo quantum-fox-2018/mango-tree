@@ -56,8 +56,6 @@ class FruitTree {
 
         // age
         this._age += 1;
-        this._badQuality = 0;
-        this._goodQuality = 0;
 
         // height
         if (this._age <= this._mature) {
@@ -77,27 +75,17 @@ class FruitTree {
         let totalFruit = Math.round(Math.random() * (20 - 1) + 1);
 
         for (let i = 0; i < totalFruit; i++) {
-            let badOrGood = Math.round(Math.random() * (1 - 0) + 1);
-            if (badOrGood === 1) {
-                if (fruit_type === 'mango') {
-                    let good = new Mango('good');
-                    this._fruits.push(good);
-                }
-                if (fruit_type === 'apple') {
-                    let good = new Apple('good');
-                    this._fruits.push(good);
-                }
-            } else {
-                if (fruit_type === 'mango') {
-                    let bad = new Mango('bad');
-                    this._fruits.push(bad);
-                }
-                if (fruit_type === 'apple') {
-                    let bad = new Apple('bad');
-                    this._fruits.push(bad);
-                }
+            if (fruit_type === 'mango') {
+                let mango = new Mango();
+                this._fruits.push(mango);
+            }
+
+            if (fruit_type === 'apple') {
+                let apple = new Apple();
+                this._fruits.push(apple);
             }
         }
+
     }
 
     // Get some fruits
@@ -105,15 +93,19 @@ class FruitTree {
         this._harvested = this._fruits.length;
 
         for (let i = 0; i < this.fruits.length; i++) {
-            for (let j in this.fruits[i]) {
-                if (this._fruits[i][j] === 'good') {
-                    this._goodQuality++;
-                } else {
-                    this._badQuality++;
-                }
+            if(this.fruits[i]._quality == "good") {
+                this._goodQuality++;
+            } else if(this.fruits[i]._quality == "bad") {
+                this._badQuality++;
+
             }
         }
         this._fruits = [];
+    }
+
+    resetBadOrGood() {
+        this._badQuality = 0;
+        this._goodQuality = 0;
     }
 
 }
@@ -133,26 +125,36 @@ class AppleTree extends FruitTree {
 }
 
 class Fruit {
-    constructor(quality) {
-        this._quality = quality;
+    constructor() {
+        this._quality = this.badOrGood();
     }
 
     get quality() {
         return this._quality;
     }
+
+    badOrGood() {
+        let badOrGood = Math.round(Math.random() * (1 - 0) + 1);
+
+        if (badOrGood === 1) {
+            return 'good';
+        } else {
+            return 'bad';
+        }
+    }
 }
 
 class Mango extends Fruit {
     // Produce a mango
-    constructor(quality) {
-        super(quality);
+    constructor() {
+        super();
     }
 }
 
 class Apple extends Fruit {
     // Produce a apple
-    constructor(quality) {
-        super(quality);
+    constructor() {
+        super();
     }
 }
 
@@ -163,7 +165,8 @@ do {
     mangoTree.produceFruit('mango');
     mangoTree.harvest();
 
-    console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height.toFixed(1)} | Fruits harvested = ${mangoTree.harvested} {${mangoTree.goodQuality} good, ${mangoTree.badQuality} bad}`)
+    console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height.toFixed(1)} | Fruits harvested = ${mangoTree.harvested} {${mangoTree.goodQuality} good, ${mangoTree.badQuality} bad}`);
+    mangoTree.resetBadOrGood();
 }
 while (mangoTree.healtyStatus != false);
 console.log('The tree has met its end.:sad:');
@@ -174,7 +177,8 @@ do {
     aplleTree.grow();
     aplleTree.produceFruit('apple');
     aplleTree.harvest();
-    console.log(`[Year ${aplleTree.age} Report] Height = ${aplleTree.height.toFixed(1)} | Fruits harvested = ${aplleTree.harvested} {${aplleTree.goodQuality} good, ${aplleTree.badQuality} bad}`)
+    console.log(`[Year ${aplleTree.age} Report] Height = ${aplleTree.height.toFixed(1)} | Fruits harvested = ${aplleTree.harvested} {${aplleTree.goodQuality} good, ${aplleTree.badQuality} bad}`);
+    aplleTree.resetBadOrGood();
 }
 while (aplleTree.healtyStatus != false);
 console.log('The tree has met its end.:sad:');
