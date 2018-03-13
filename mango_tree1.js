@@ -3,13 +3,15 @@
 // release 0
 class FruitTree {
   // Initialize a new MangoTree
-  constructor(age,height,max_fruit,current_fruit,picked_fruit,status) {
-    this._age = age;
-    this._height = height;
-    this._max_fruit = max_fruit;
-    this._current_fruit = current_fruit;
-    this._picked_fruit = picked_fruit;
-    this._status = status;
+  constructor(newObjTree) {
+    this._age = newObjTree.age;
+    this._height = newObjTree.height;
+    this._max_fruit = newObjTree.max_fruit;
+    this._current_fruit = newObjTree.current_fruit;
+    this._picked_fruit = newObjTree.picked_fruit;
+    this._status = newObjTree.status;
+    this._mature_age = newObjTree.mature_age;
+    this._dying_age = newObjTree.dying_age;
     this._good = 0;
     this._bad = 0;
   }
@@ -42,13 +44,12 @@ class FruitTree {
     return this._bad;
   }
 
-
   // Get current states here
 
   // Grow the tree
   grow() {
-    let mature_age = 4;
-    let dying_age = 10;
+    let mature_age = this._mature_age;
+    let dying_age = this._dying_age;
 
     if (this._age < dying_age && this.age <= mature_age) {
       this._age += 1;
@@ -62,13 +63,13 @@ class FruitTree {
 
   // Produce some mangoes
   produceFruites() {
-    let mature_age = 4;
-    let dying_age = 10;
+    let mature_age = this._mature_age;
+    let dying_age = this._dying_age;
 
     if (this._age < dying_age && this.age <= mature_age) {
       this._current_fruit += 0;
     } else if (this._age < dying_age && this._age > mature_age) {
-      this._current_fruit = Math.floor(Math.random()*16);
+      this._current_fruit = Math.floor(Math.random()*51);
     } else {
       this._status = false;
     }
@@ -77,11 +78,12 @@ class FruitTree {
 
   // Get some fruits
   harvest() {
-    let mature_age = 4;
-    let dying_age = 10;
+    let mature_age = this._mature_age;
+    let dying_age = this._dying_age;
     
     if (this._age < dying_age && this.age <= mature_age) {
       this._picked_fruit += 0;
+
     } else if (this._age < dying_age && this._age > mature_age) {
       let maxHarvest = this.fruits; // jumlah max petik
 
@@ -90,14 +92,8 @@ class FruitTree {
       let countFruitBad = 0; 
       
       for (let i = 0; i < maxHarvest; i++) {
-        let checkFruit = Math.floor(Math.random()*2); // 0 good, 1 bad
-        if (checkFruit == 0) {
-          let newMango = new Fruit('good');
-          fruitBascket.push(newMango);
-        } else {
-          let newMango = new Fruit('bad');
-          fruitBascket.push(newMango);
-        }
+        let newFruit = new Fruit();
+        fruitBascket.push(newFruit);
       }
 
       for (let i = 0; i < fruitBascket.length; i++) {
@@ -132,12 +128,32 @@ class PearTree extends FruitTree {
 }
 
 class Fruit {
-  constructor(quality) {
-    this._quality = quality;
+  constructor() {
+    // this._quality = quality;
+    this._quality = this.checkQuality();
   }
-}
 
-let mangoTree = new MangoTree(0,0,1000,0,0,true);
+  checkQuality() {
+    let checkFruit = Math.floor(Math.random()*2); // 0 good, 1 bad
+    if (checkFruit == 0) {
+      return 'good';
+    } else {
+      return 'bad';
+    }    
+  }
+
+}
+let newObjMangoTree = {
+  age: 0,
+  height: 0,
+  max_fruit: 1000,
+  current_fruit: 0,
+  picked_fruit: 0,
+  status: true,
+  mature_age: 4,
+  dying_age: 10
+}
+let mangoTree = new MangoTree(newObjMangoTree);
 console.log('=======================MangoTree===========================');
 do {
   mangoTree.grow();
@@ -148,7 +164,17 @@ do {
 
 
 // Release 1
-let appleTree = new AppleTree(0,0,1000,0,0,true);
+let newObjAppleTree = {
+  age: 0,
+  height: 0,
+  max_fruit: 1000,
+  current_fruit: 0,
+  picked_fruit: 0,
+  status: true,
+  mature_age: 2,
+  dying_age: 10
+}
+let appleTree = new AppleTree(newObjAppleTree);
 console.log('=======================AppleTree===========================');
 do {
   appleTree.grow();
@@ -158,7 +184,17 @@ do {
 } while (appleTree.healtyStatus == true)
 
 // Release 2
-let pearTree = new PearTree(0,0,1000,0,0,true);
+let newObjPearTree = {
+  age: 0,
+  height: 0,
+  max_fruit: 1000,
+  current_fruit: 0,
+  picked_fruit: 0,
+  status: true,
+  mature_age: 7,
+  dying_age: 20
+}
+let pearTree = new PearTree(newObjPearTree);
 console.log('=======================PearTree===========================');
 do {
   pearTree.grow();
