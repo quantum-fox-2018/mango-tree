@@ -52,28 +52,41 @@ class MangoTree {
     if(this._age>3){
       this._fruits = this.randomFruits()
     }
+    this.panen =[]
+    for(let i=0;i<this._fruits;i++){
+      let mango = new Mango()
+      this.panen.push(mango)
+    }
   }
 
   harvest() {
     let countGood = 0
     let countBad = 0
-    for(let i=0; i<this._fruits; i++){
-      let random = Math.floor(Math.random()*2)
-      if(random==0){
-        countGood++
-      } else {
+    for (var i = 0; i < this.panen.length; i++) {
+      if( !this.panen[i].quality  ){
         countBad++
+      }else{
+        countGood++
       }
     }
     this._harvested = `${countGood} good, ${countBad} bad`
   }
 }
 
-class Mango extends MangoTree {
+class Mango {
   constructor() {
-    super()
+  this.quality = this.randomQuality()
+
   }
 
+  randomQuality(){
+  let random = Math.round(Math.random()*2)
+    if(random==1){
+      return false
+    } else {
+      return true
+    }
+  }
 
   randomGrowth(){
     return Math.random()*1
@@ -88,11 +101,11 @@ console.log(`The tree is alive! :smile:`)
 let mangoTree = new MangoTree()
 let mango = new Mango()
 do {
-  mango.grow()
-  mango.produceMangoes()
-  mango.harvest()
-  console.log(`[Year ${mango.age} Report] Height = ${mango.height.toFixed(2)} | Fruits harvested = ${mango.fruits} (${mango.harvested})`)
-} while (mango.healthyStatus !== false)
+  mangoTree.grow()
+  mangoTree.produceMangoes()
+  mangoTree.harvest()
+  console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height.toFixed(2)} | Fruits harvested = ${mangoTree.fruits} (${mangoTree.harvested})`)
+} while (mangoTree.healthyStatus !== false)
 
 // // apple tree
 // let appleTree = new AppleTree()
@@ -112,7 +125,7 @@ do {
 //   console.log(`[Year ${peerTree.age} Report] Height = ${peerTree.height.toFixed(2)} | Fruits harvested = ${peerTree.fruits} (${peerTree.harvested})`)
 // } while (peerTree.healthyStatus !== false)
 console.log(`The tree has met its end! :sad:`)
-console.log();
+//console.log(mangoTree.panen);
 
 // // Release 1
 // class AppleTree {}
