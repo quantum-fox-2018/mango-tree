@@ -2,7 +2,7 @@
 
 // release 0
 
-class MangoTree {
+class AppleTree {
   constructor() {
     this._age = 0
     this._height = 0
@@ -54,8 +54,8 @@ class MangoTree {
     }
     this.panen =[]
     for(let i=0;i<this._fruits;i++){
-      let mango = new Mango()
-      this.panen.push(mango)
+      let apple = new Apple()
+      this.panen.push(apple)
     }
   }
 
@@ -73,7 +73,7 @@ class MangoTree {
   }
 }
 
-class Mango {
+class Apple {
   constructor() {
   this.quality = this.randomQuality()
 
@@ -98,14 +98,14 @@ class Mango {
 }
 console.log(`The tree is alive! :smile:`)
 // mango tree
-let mangoTree = new MangoTree()
-let mango = new Mango()
+let appleTree = new AppleTree()
+let apple = new Apple()
 do {
-  mangoTree.grow()
-  mangoTree.produceMangoes()
-  mangoTree.harvest()
-  console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height.toFixed(2)} | Fruits harvested = ${mangoTree.fruits} (${mangoTree.harvested})`)
-} while (mangoTree.healthyStatus !== false)
+  appleTree.grow()
+  appleTree.produceMangoes()
+  appleTree.harvest()
+  console.log(`[Year ${appleTree.age} Report] Height = ${appleTree.height.toFixed(2)} | Fruits harvested = ${appleTree.fruits} (${appleTree.harvested})`)
+} while (appleTree.healthyStatus !== false)
 
 // // apple tree
 // let appleTree = new AppleTree()
@@ -125,7 +125,6 @@ do {
 //   console.log(`[Year ${peerTree.age} Report] Height = ${peerTree.height.toFixed(2)} | Fruits harvested = ${peerTree.fruits} (${peerTree.harvested})`)
 // } while (peerTree.healthyStatus !== false)
 console.log(`The tree has met its end! :sad:`)
-//console.log(Mango.randomQuality());
 //console.log(mangoTree.panen);
 
 // // Release 1
