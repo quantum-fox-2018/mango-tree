@@ -52,11 +52,14 @@ class MangoTree {
     if(this._age>3){
       this._fruits = this.randomFruits()
     }
+
     this.panen =[]
     for(let i=0;i<this._fruits;i++){
       let mango = new Mango()
       this.panen.push(mango)
+        //console.log(this.panen);
     }
+
   }
 
   harvest() {
@@ -125,6 +128,7 @@ do {
 //   console.log(`[Year ${peerTree.age} Report] Height = ${peerTree.height.toFixed(2)} | Fruits harvested = ${peerTree.fruits} (${peerTree.harvested})`)
 // } while (peerTree.healthyStatus !== false)
 console.log(`The tree has met its end! :sad:`)
+//console.log(  mangoTree.harvest());
 //console.log(Mango.randomQuality());
 //console.log(mangoTree.panen);
 
