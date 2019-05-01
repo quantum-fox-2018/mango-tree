@@ -1,68 +1,181 @@
 "use strict"
 
-// release 0
-
-class MangoTree {
-
-  // Initialize a new MangoTree
+// Release 2
+class FruitTree {
   constructor() {
+    this._age = 0
+    this._height = 0
+    this._maxFruit = 20
+    this._fruits = []
+    this._harvested = 0
+    this._maxHeight = 10
+    this._mature = 12
+    this._healthStatus = this.healthyStatus
   }
 
   get age() {
+    return this._age
   }
 
   get height() {
-
+    return this._height.toFixed(1)
   }
 
   get fruits() {
+    return this._fruits.join(',')
   }
 
-  get healtyStatus() {
+  get healthyStatus() {
+    this._healthStatus = this._age <= this._mature
+    return this._healthStatus
   }
 
   get harvested() {
-
+    return this._harvested
   }
 
 
-  // Get current states here
-
-  // Grow the tree
   grow() {
+    this._age++
+    if(this._age <= this._maxHeight){
+      this._height += Math.random()*2
+    }
   }
 
-  // Produce some mangoes
-  produceMangoes() {
+  produceFruit() {
+    let count = Math.floor(Math.random()*this._maxFruit)
+    
+    for (let i = 0; i < count; i++) {
+      this._fruits.push(new Fruit())
+    }
+    return this._fruits
   }
 
-  // Get some fruits
   harvest() {
+    let fruitsCount = this._fruits.length
+    let countGood = 0
+    let countBad = 0
+
+    while (this._fruits.length > 0) {
+      if (this._fruits[0]._quality === 'good')
+        countGood++
+      else{
+        countBad++
+      }
+      this._fruits.shift()
+    }
+    return this._harvested = `${fruitsCount} (${countGood} good, ${countBad} bad)`
   }
 
 }
 
-class Mango {
+class Fruit {
+  constructor() {
+    this._quality = this.checkQuality()
+  }
+
+  checkQuality(){
+    let type = ['good','bad']
+    let random = Math.floor(Math.random()* type.length)
+    return type[random]
+  }
+}
+
+
+
+class MangoTree extends FruitTree {
+
+  // Initialize a new MangoTree
+  constructor() {
+    super()
+    this._maxFruit = 30
+    this._mature = 14
+  }
+
+}
+
+class Mango extends Fruit {
   // Produce a mango
   constructor() {
+    super()
   }
+
 }
 
-/**
-  * driver code untuk release 0
-  * let mangoTree = new MangoTree()
-  * do {
-  *   mangoTree.grow();
-  *   mangoTree.produceMangoes();
-  *   mangoTree.harverst();
-  *   console.log(`[Year ${tree.age} Report] Height = ${tree.height} | Fruits harvested = ${tree.harvested}`)
-  * } while (mangoTree.healthyStatus != false)
-  */
 
-// Release 1
-class AppleTree {}
-class Apple {}
+class AppleTree extends FruitTree {
+  constructor(){
+    super()
+    this._maxHeight = 5
+    this._maxFruit = 50
+  }
 
-// Release 2
-class FruitTree {}
-class Fruit {}
+  produceFruit() {
+    let count = Math.floor(Math.random()*this._maxFruit)
+    
+    for (let i = 0; i < count; i++) {
+      this._fruits.push(new Apple())
+    }
+    return this._fruits
+  }
+
+  harvest() {
+    let fruitsCount = this._fruits.length
+    let countRed = 0
+    let countGreen = 0
+
+    while (this._fruits.length > 0) {
+      if (this._fruits[0]._quality === 'red')
+        countRed++
+      else{
+        countGreen++
+      }
+      this._fruits.shift()
+    }
+    return this._harvested = `${fruitsCount} Apples (${countRed} red, ${countGreen} green)`
+  }
+
+}
+
+class Apple extends Fruit{
+  constructor() {
+    super()
+  }
+
+  checkQuality(){
+    let type = ['red','green']
+    let random = Math.floor(Math.random()* type.length)
+    return type[random]
+  }
+
+}
+
+
+   // driver code untuk release 0
+  let mangoTree = new MangoTree()
+  console.log('The tree is alive! :smile:')
+  do {
+    mangoTree.grow();
+    mangoTree.produceFruit();
+    mangoTree.harvest();
+    console.log(`[Year ${mangoTree.age} Report] Height = ${mangoTree.height} m | Fruits harvested = ${mangoTree.harvested}`)
+   } while (mangoTree.healthyStatus != false)
+   console.log('The tree has met its end! :sad:')
+
+
+// console.log(mangoTree);
+console.log('===============================================================');
+
+
+let appleTree = new AppleTree()
+  console.log('The tree is alive! :smile:')
+  do {
+    appleTree.grow();
+    appleTree.produceFruit();
+    appleTree.harvest();
+    console.log(`[Year ${appleTree.age} Report] Height = ${appleTree.height} m | Fruits harvested = ${appleTree.harvested}`)
+   } while (appleTree.healthyStatus != false)
+   console.log('The tree has met its end! :sad:')
+
+
+// console.log((appleTree.produceFruit()));
